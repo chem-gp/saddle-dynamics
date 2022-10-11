@@ -15,13 +15,17 @@ class MDRunner:
         # atoms.calc = EMT()
 
         # Set the momenta corresponding to T=300K
-        # MaxwellBoltzmannDistribution(self.atoms, temperature_K=300)
+        MaxwellBoltzmannDistribution(self.atoms, temperature_K=300)
+
+        # momenta = self.atoms.get_momenta()
+        # momenta[11] = [0.1,0.1,0.1]
+        # self.atoms.set_momenta(momenta)
 
         # We want to run MD with constant energy using the VelocityVerlet algorithm.
         os.makedirs("data/dump/ase", exist_ok=True)
         dyn = VelocityVerlet(
             self.atoms,
-            0.5 * units.fs,
+            0.1 * units.fs,
             trajectory=os.path.dirname(self.traj_filename) + "md.traj",
             logfile=self.log_filename,
         )  # 5 fs time step.
@@ -35,7 +39,7 @@ class MDRunner:
                 "Etot = %.3feV" % (epot, ekin, ekin / (1.5 * units.kB), epot + ekin)
             )
 
-        dyn.run(10)
+        dyn.run(1000)
 
 
         # # Now run the dynamics
