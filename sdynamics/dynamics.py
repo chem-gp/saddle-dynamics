@@ -11,11 +11,11 @@ class MDRunner:
         self.traj_filename = traj_filename
         self.log_filename = log_filename
 
-    def run(self):
+    def run(self, time_step=0.01, num_steps=100):
         # atoms.calc = EMT()
 
         # Set the momenta corresponding to T=300K
-        MaxwellBoltzmannDistribution(self.atoms, temperature_K=300)
+        MaxwellBoltzmannDistribution(self.atoms, temperature_K=100)
 
         # momenta = self.atoms.get_momenta()
         # momenta[11] = [0.1,0.1,0.1]
@@ -25,7 +25,7 @@ class MDRunner:
         os.makedirs("data/dump/ase", exist_ok=True)
         dyn = VelocityVerlet(
             self.atoms,
-            0.5 * units.fs,
+            time_step * units.fs,
             trajectory=os.path.dirname(self.traj_filename) + "md.traj",
             logfile=self.log_filename,
         )  # 5 fs time step.
@@ -39,7 +39,7 @@ class MDRunner:
                 "Etot = %.3feV" % (epot, ekin, ekin / (1.5 * units.kB), epot + ekin)
             )
 
-        dyn.run(10_000)
+        dyn.run(num_steps)
 
 
         # # Now run the dynamics
