@@ -25,7 +25,7 @@ class MDRunner:
         os.makedirs("data/dump/ase", exist_ok=True)
         dyn = VelocityVerlet(
             self.atoms,
-            0.1 * units.fs,
+            0.5 * units.fs,
             trajectory=os.path.dirname(self.traj_filename) + "md.traj",
             logfile=self.log_filename,
         )  # 5 fs time step.
@@ -39,7 +39,7 @@ class MDRunner:
                 "Etot = %.3feV" % (epot, ekin, ekin / (1.5 * units.kB), epot + ekin)
             )
 
-        dyn.run(1000)
+        dyn.run(10_000)
 
 
         # # Now run the dynamics
