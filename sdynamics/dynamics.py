@@ -22,7 +22,7 @@ class MDRunner:
         # self.atoms.set_momenta(momenta)
 
         # We want to run MD with constant energy using the VelocityVerlet algorithm.
-        os.makedirs("data/dump/ase", exist_ok=True)
+        os.makedirs("../dump/ase", exist_ok=True)
         dyn = VelocityVerlet(
             self.atoms,
             time_step * units.fs,
