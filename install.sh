@@ -6,8 +6,11 @@
 
 mkdir chem-gp && cd "$_"
 
-git clone git@github.com:chem-gp/fande.git
-git clone git@github.com:chem-gp/saddle-dynamics.git
+# git clone git@github.com:chem-gp/fande.git
+# git clone git@github.com:chem-gp/saddle-dynamics.git
+
+git clone https://github.com/chem-gp/fande.git
+git clone https://github.com/chem-gp/saddle-dynamics.git
 
 # ...
 if { conda env list | grep 'fande'; } >/dev/null 2>&1; 
@@ -27,4 +30,7 @@ fi;
 # # Update environment from time to time:
 # conda env update fande/fande.yml --prune
 
+
+# Unzip archives:
+# unzip dynamics.zip -d .
 
