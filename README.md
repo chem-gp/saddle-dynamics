@@ -4,7 +4,7 @@ GP-aided saddle-point molecular dynamics
 
 ## Installation:
 
-```
+```bash
 #!/usr/bin/env bash
 # 
 
