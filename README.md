@@ -4,27 +4,42 @@ GP-aided saddle-point molecular dynamics
 
 ## Installation:
 
-1. Create a folder for repos
-
 ```
-cd ~
-mkdir
+#!/usr/bin/env bash
+# 
+
+# Get conda:
+# wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
+
+mkdir chem-gp && cd "$_"
+
+# git clone git@github.com:chem-gp/fande.git
+# git clone git@github.com:chem-gp/saddle-dynamics.git
+
+git clone https://github.com/chem-gp/fande.git
+git clone https://github.com/chem-gp/saddle-dynamics.git
+
+# ...
+if { conda env list | grep 'fande'; } >/dev/null 2>&1; 
+then {
+echo "conda fande environment found. Activating...";
+conda activate fande;
+}
+else {
+echo "Cannot find the environment. Creating new environment...";
+conda env create -f fande/fande.yml;
+conda activate fande;
+}
+# ...
+fi;
+
+
+# # Update environment from time to time:
+# conda env update fande/fande.yml --prune
+
+
+# Unzip archives:
+# unzip dynamics.zip -d .
 ```
-
-
-2. Install Anaconda Distribution for Linux (https://www.anaconda.com/products/distribution) - conda 4.11.0 was used 
-
-
-3. Install the environment with all needed packages
-
-```
-conda env create -f fande.yml
-
-conda activate fande
-```
-
-
-...
-
 
 
